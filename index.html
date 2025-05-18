@@ -25,7 +25,7 @@
     --primary-color: #d62828;    /* Vibrant Red */
     --primary-hover: #f77f00;    /* Orange accent */
     --background-dark: #3e1a1a;
-    --background-darker: #290000;
+    --background-darker: #852020;
     --text-light: #ffe6e6;
   }
   /* Header */
@@ -140,11 +140,11 @@
   /* Container sections */
   main {
     max-width: 980px;
-    margin: 1rem auto 3rem;
+    margin: 1rem auto 4rem;
     padding: 0 1rem;
   }
   section {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
   section h2 {
     font-size: 2.1rem;
@@ -172,6 +172,7 @@
   }
 
   /* Updates & Birthdays */
+
   #updates ul {
     list-style: disc inside;
   }
@@ -276,6 +277,19 @@
     font-size: 0.9rem;
   }
 
+/* Motto Section */
+#motto {
+  text-align: center;
+}
+.motto-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-hover);
+  font-style: italic;
+  margin-top: 1rem;
+  text-shadow: 1px 1px 4px var(--background-darker);
+}
+
   /* Responsive */
   @media(max-width: 768px) {
     nav ul {
@@ -330,6 +344,11 @@
   <section id="home" tabindex="0" aria-label="Welcome section">
     <h2>Welcome to S.P.V.M School</h2>
     <p>Empowering students with knowledge and values for a brighter tomorrow.</p>
+  
+  <p id="motto"class="sanskrit">“असतो मा सद्गमय, तमसो मा ज्योतिर्गमय”</p>
+  <p class="meaning">"Lead me from falsehood to truth, from darkness to light."</p>
+</section>
+
   </section>
 
   <section id="about" tabindex="0" aria-label="About S.P.V.M School">
@@ -388,7 +407,7 @@
       ripple.style.left = (e.clientX - rect.left) + 'px';
       ripple.style.top = (e.clientY - rect.top) + 'px';
       e.target.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 600);
+      setTimeout(() => ripple.remove(), 300);
 
       // Navigate after ripple
       const href = e.target.getAttribute('href');
