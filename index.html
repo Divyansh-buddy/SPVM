@@ -144,7 +144,7 @@
     padding: 0 1rem;
   }
   section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.7rem;
   }
   section h2 {
     font-size: 2.1rem;
@@ -281,8 +281,20 @@
 #motto {
   text-align: center;
 }
-.motto-text {
-  font-size: 1.4rem;
+
+#about p:hover{
+ 
+  font-size: 1.2rem;
+  font-weight: 600;
+  color:white;
+  font-style: italic;
+  margin-top: 1rem;
+  text-shadow: 1px 1px 4px var(--background-darker);
+}
+
+.motto-text:hover{
+ 
+  font-size: 1.8rem;
   font-weight: 600;
   color: var(--primary-hover);
   font-style: italic;
@@ -290,26 +302,51 @@
   text-shadow: 1px 1px 4px var(--background-darker);
 }
 
-  /* Responsive */
-  @media(max-width: 768px) {
-    nav ul {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .logo-container {
-      order: 1;
-      margin-top: 1rem;
-    }
-    header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .slider-controls button {
-      padding: 6px 12px;
-      margin: 0 6px;
-      font-size: 0.9rem;
-    }
+ 
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;        /* ensure nav ul stays within viewport */
+    max-width: 100%;    /* prevent overflow */
   }
+
+  .logo-container {
+    order: 1;
+    margin: 1rem auto 1.5rem;
+    max-width: 100%;    /* prevent overflow */
+    width: 150px;       /* or a suitable fixed width for logo on mobile */
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;  /* prevent horizontal scroll inside header */
+  }
+
+  .slider-controls button {
+    padding: 8px 14px;
+    margin: 0 8px;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    max-width: 100%;     /* prevent overflow */
+    white-space: nowrap; /* prevent button text wrapping */
+  }
+
+  /* Optional: prevent horizontal scrolling on body */
+  body {
+    overflow-x: hidden;
+  }
+}
+  
 </style>
 </head>
 <body>
@@ -344,12 +381,11 @@
   <section id="home" tabindex="0" aria-label="Welcome section">
     <h2>Welcome to S.P.V.M School</h2>
     <p>Empowering students with knowledge and values for a brighter tomorrow.</p>
-  
-  <p id="motto"class="sanskrit">“असतो मा सद्गमय, तमसो मा ज्योतिर्गमय”</p>
-  <p class="meaning">"Lead me from falsehood to truth, from darkness to light."</p>
-</section>
 
-  </section>
+  </section><section class="motto-text">
+    
+  <p id="motto"class="sanskrit">“असतो मा सद्गमय, तमसो मा ज्योतिर्गमय”</p>
+  <p class="meaning">"Lead me from falsehood to truth, from darkness to light."</p></section>
 
   <section id="about" tabindex="0" aria-label="About S.P.V.M School">
     <h2>About Us</h2>
@@ -472,7 +508,8 @@
     {type: 'image', src: 'event1.jpg', alt: 'Annual Function'},
     {type: 'image', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy9RX3vB5oXLeCDg36bsvVpC7cpmm23ncQSA&s', alt: 'Sports Day'},
     {type: 'image', src: 'lab.jpg', alt: 'Science Lab'},
-    {type: 'image', src: 'students.jpg', alt: 'Student Activities'}
+    {type: 'image', src: 'students.jpg', alt: 'Student Activities'},
+     {type: 'iframe', src: 'https://www.youtube.com/embed/lvu4OCfyypM', alt: 'YouTube Video'}
   ];
 
   let currentIndex = 0;
@@ -496,6 +533,18 @@
         video.alt = item.alt || 'Gallery Video';
         slide.appendChild(video);
       }
+      else if (item.type === 'iframe') {
+            const iframe = document.createElement('iframe');
+            iframe.src = item.src;
+            iframe.title = item.alt || 'Embedded Video';
+            iframe.width = '80%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.borderRadius = '12px';
+            slide.appendChild(iframe);
+          }
       gallerySlider.appendChild(slide);
     });
     
