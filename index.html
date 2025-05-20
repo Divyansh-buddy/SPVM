@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>S.P.V.M School - Complete Portal</title>
+<link rel="icon" href="logo.jpg" type="image/x-icon">
 <style>
   /* Reset & basics */
   * {
@@ -308,7 +309,7 @@
   nav ul {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 7px;
     padding: 0;
     margin: 0 auto;
     width: 100%;        /* ensure nav ul stays within viewport */
@@ -317,7 +318,7 @@
 
   .logo-container {
     order: 1;
-    margin: 1rem auto 1.5rem;
+    margin: 0.6rem auto 1.5rem;
     max-width: 100%;    /* prevent overflow */
     width: 150px;       /* or a suitable fixed width for logo on mobile */
   }
@@ -332,9 +333,9 @@
   }
 
   .slider-controls button {
-    padding: 8px 14px;
+    padding: 8px 8px;
     margin: 0 8px;
-    font-size: 1rem;
+    font-size: 0.7rem;
     border-radius: 6px;
     transition: background-color 0.3s ease;
     max-width: 100%;     /* prevent overflow */
@@ -346,6 +347,28 @@
     overflow-x: hidden;
   }
 }
+  form {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+    color:#000000;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+  }
+  button {
+    background: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
   
 </style>
 </head>
@@ -418,7 +441,27 @@
   </section>
 
   <section id="contact" tabindex="0" aria-label="Contact information">
-    <h2>Contact Us</h2>
+ <form id="contactForm" action="https://formsubmit.co/rdivyansh228@gmail.com" method="POST">
+  <h2>Contact Us</h2>
+
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="message">Message:</label><br>
+  <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+  <!-- Disable CAPTCHA and allow redirect -->
+  <input type="hidden" name="_captcha" value="false">
+
+  <button type="submit">Send Message</button>
+</form>
+
+
+
+
     <p>We'd love to hear from you! Reach out to us via any of the following:</p>
     <ul>
       <li>📞 Phone: +91 98765 43210</li>
@@ -431,7 +474,31 @@
 <footer>
   &copy; 2025 S.P.V.M School. All rights reserved.
 </footer>
+<script>
+  const form = document.getElementById('contactForm');
 
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent normal submit
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("✅ Your message has been sent!");
+        form.reset();
+        window.location.href = "https://spvmschool.netlify.app/"; // ✅ Redirect to your homepage
+      } else {
+        alert("❌ There was a problem sending the message. Please try again.");
+      }
+    })
+    .catch(error => {
+      alert("⚠️ Network error. Please try again.");
+    });
+  });
+</script>
 <script>
   // Ripple effect on nav links
   document.querySelectorAll('.nav-link').forEach(link => {
